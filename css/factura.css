@@ -1,0 +1,328 @@
+/* ==========================================================
+   0. ESTILOS GENERALES (los mismos de siempre)
+   ========================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  color: #292929;
+  background: white;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+/* Ícono del carrito + botón Entrar, uno al lado del otro */
+.acciones {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.icono-carrito {
+  font-size: 30px;
+}
+
+/* ==========================================================
+   1. ENCABEZADO (igual que en producto y pago)
+   ========================================================== */
+header {
+  padding: 50px 80px 35px 80px;
+  background: white;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.fila-superior {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu {
+  font-size: 36px;
+  margin-right: 20px;
+}
+
+.logo {
+  height: 80px;
+  vertical-align: middle;
+}
+
+.boton-entrar {
+  background: #FFBC0D;
+  border: 1px solid #E3A600;
+  border-radius: 3px;
+  padding: 14px 70px;
+}
+
+nav {
+  margin-top: 45px;
+  margin-left: 60px;
+}
+
+nav a {
+  font-size: 20px;
+  margin-right: 50px;
+}
+
+
+/* ==========================================================
+   2. CONTENEDOR CENTRADO
+   ========================================================== */
+
+/* max-width: nunca pasa de 800px (en pantallas chicas se achica solo).
+   margin: 0 auto: los márgenes laterales "automáticos" se reparten
+   por igual y la caja queda CENTRADA. */
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 70px 20px 100px 20px;
+}
+
+
+/* ==========================================================
+   3. MENSAJE DE ÉXITO
+   ========================================================== */
+.exito {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+/* Círculo verde: width = height y border-radius 50% */
+.exito-icono {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px auto;
+  border-radius: 50%;
+  background: #2E9E4F;
+  color: white;
+  font-size: 44px;
+}
+
+.exito h1 {
+  font-size: 38px;
+  margin-bottom: 12px;
+}
+
+.exito p {
+  color: #666;
+  font-size: 18px;
+}
+
+
+/* ==========================================================
+   4. LA FACTURA
+   ========================================================== */
+.factura {
+  padding: 40px;
+  border: 1px solid #E5E5E5;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* Título a la izquierda y número a la derecha */
+.factura-titulo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+  border-bottom: 3px solid #FFBC0D;   /* línea amarilla */
+}
+
+.factura-titulo h2 {
+  font-size: 30px;
+}
+
+.factura-titulo p {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Datos del cliente y del pedido, uno al lado del otro */
+.datos {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.datos div {
+  width: 50%;
+}
+
+.datos h3 {
+  font-size: 18px;
+  margin-bottom: 14px;
+}
+
+.datos p {
+  margin-bottom: 8px;
+  line-height: 1.4;
+  color: #555;
+}
+
+.datos strong {
+  color: #292929;
+}
+
+
+/* ==========================================================
+   5. TABLA
+   ========================================================== */
+
+/* border-collapse: junta los bordes de las celdas en una sola línea */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  text-align: left;
+  padding: 12px 10px;
+  background: #F8F8F8;
+  font-size: 15px;
+}
+
+td {
+  padding: 16px 10px;
+  border-bottom: 1px solid #E5E5E5;
+}
+
+/* Las columnas 2 y 3 (Cant. y Precio) van alineadas a la derecha.
+   nth-child(2) = "el segundo hijo de su fila" */
+th:nth-child(2),
+td:nth-child(2) {
+  text-align: center;
+}
+
+th:nth-child(3),
+td:nth-child(3) {
+  text-align: right;
+  white-space: nowrap;   /* que "S/ 12.90" no se parta en dos líneas */
+}
+
+
+/* ==========================================================
+   6. TOTALES
+   ========================================================== */
+
+/* Caja de 300px con margen izquierdo automático:
+   se empuja sola hacia la derecha. */
+.totales {
+  width: 300px;
+  margin: 25px 0 0 auto;
+}
+
+.linea {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  color: #555;
+}
+
+.total {
+  margin-top: 8px;
+  padding-top: 14px;
+  border-top: 2px solid #292929;
+  font-size: 20px;
+  font-weight: bold;
+  color: #292929;
+}
+
+
+/* ==========================================================
+   7. BOTONES FINALES
+   ========================================================== */
+.botones {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.boton-amarillo,
+.boton-borde {
+  padding: 16px 40px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.boton-amarillo {
+  background: #FFBC0D;
+  border: 1px solid #E3A600;
+}
+
+.boton-borde {
+  border: 1px solid #292929;
+}
+
+.boton-amarillo:hover {
+  background: #ffc933;
+}
+
+.boton-borde:hover {
+  background: #F8F8F8;
+}
+
+
+/* ==========================================================
+   8. CELULAR (opcional)
+   ========================================================== */
+@media (max-width: 800px) {
+
+  header {
+    padding: 20px;
+  }
+
+  .boton-entrar {
+    padding: 12px 30px;
+  }
+
+  nav {
+    margin-top: 25px;
+    margin-left: 0;
+  }
+
+  nav a {
+    font-size: 16px;
+    margin-right: 20px;
+  }
+
+  main {
+    padding: 40px 15px 60px 15px;
+  }
+
+  .factura {
+    padding: 20px;
+  }
+
+  /* Cliente y pedido, uno debajo del otro */
+  .datos {
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .datos div {
+    width: 100%;
+  }
+
+  .totales {
+    width: 100%;
+  }
+
+  .botones {
+    flex-direction: column;
+    text-align: center;
+  }
+}

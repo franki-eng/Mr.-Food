@@ -1,0 +1,303 @@
+/* ==========================================================
+   0. ESTILOS GENERALES (los mismos de siempre)
+   ========================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  color: #292929;
+  background: white;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+/* ==========================================================
+   1. ENCABEZADO (igual que en las otras páginas)
+   ========================================================== */
+header {
+  padding: 50px 80px 35px 80px;
+  background: white;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.fila-superior {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu {
+  font-size: 36px;
+  margin-right: 20px;
+}
+
+.logo {
+  height: 42px;
+  vertical-align: middle;
+}
+
+.boton-entrar {
+  background: #FFBC0D;
+  border: 1px solid #E3A600;
+  border-radius: 3px;
+  padding: 14px 70px;
+}
+
+/* Ícono del carrito + botón Entrar, uno al lado del otro */
+.acciones {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.icono-carrito {
+  font-size: 30px;
+}
+
+nav {
+  margin-top: 45px;
+  margin-left: 60px;
+}
+
+nav a {
+  font-size: 20px;
+  margin-right: 50px;
+}
+
+
+/* ==========================================================
+   2. DISTRIBUCIÓN: lista a la izquierda, resumen a la derecha
+   ========================================================== */
+main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;   /* cada columna mide lo que necesita */
+  gap: 60px;
+  padding: 70px 40px 100px 40px;
+}
+
+.lista {
+  width: 720px;
+}
+
+.lista h1 {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.cantidad-total {
+  color: #666;
+  margin-bottom: 30px;
+}
+
+
+/* ==========================================================
+   3. CADA PRODUCTO DEL CARRITO
+   ========================================================== */
+
+/* Una fila con: foto | nombre y precio | cantidad | subtotal.
+   align-items: center los centra verticalmente entre sí. */
+.item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 0;
+  border-bottom: 1px solid #E5E5E5;
+}
+
+/* flex-shrink: 0 evita que la foto se achique si falta espacio */
+.item-foto {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  width: 100px;
+  height: 100px;
+  background: #F9F9F9;
+  border-radius: 8px;
+  font-size: 50px;
+}
+
+/* flex: 1 = "ocupa todo el espacio que sobre".
+   Por eso la cantidad y el subtotal quedan pegados a la derecha. */
+.item-info {
+  flex: 1;
+}
+
+.item-nombre {
+  font-size: 19px;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.item-precio {
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.eliminar {
+  font-size: 14px;
+  color: #666;
+  text-decoration: underline;
+}
+
+.eliminar:hover {
+  color: #D9251C;
+}
+
+.item-cantidad {
+  width: 70px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.item-cantidad:focus {
+  outline: 2px solid #FFBC0D;
+  border-color: #FFBC0D;
+}
+
+.item-subtotal {
+  width: 90px;
+  text-align: right;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+
+/* ==========================================================
+   4. RESUMEN
+   ========================================================== */
+.resumen {
+  width: 380px;
+  padding: 30px;
+  background: #F8F8F8;
+  border-radius: 8px;
+}
+
+.resumen h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.linea {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid #E5E5E5;
+}
+
+.total {
+  border-bottom: none;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* display: block = el enlace ocupa todo el ancho del recuadro */
+.boton-pagar {
+  display: block;
+  margin-top: 20px;
+  padding: 18px;
+  background: #FFBC0D;
+  border: 1px solid #E3A600;
+  border-radius: 4px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.boton-pagar:hover {
+  background: #ffc933;
+}
+
+.seguir {
+  display: block;
+  margin-top: 20px;
+  text-align: center;
+  color: #666;
+}
+
+.seguir:hover {
+  text-decoration: underline;
+}
+
+
+/* ==========================================================
+   5. CELULAR (opcional)
+   ========================================================== */
+@media (max-width: 800px) {
+
+  header {
+    padding: 20px;
+  }
+
+  .boton-entrar {
+    padding: 12px 30px;
+  }
+
+  .acciones {
+    gap: 14px;
+  }
+
+  .icono-carrito {
+    font-size: 26px;
+  }
+
+  nav {
+    margin-top: 25px;
+    margin-left: 0;
+  }
+
+  nav a {
+    font-size: 16px;
+    margin-right: 20px;
+  }
+
+  /* Lista arriba y resumen abajo */
+  main {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 40px;
+    padding: 40px 20px;
+  }
+
+  .lista,
+  .resumen {
+    width: 100%;
+  }
+
+  .lista h1 {
+    font-size: 30px;
+  }
+
+  /* flex-wrap: lo que no cabe en la fila baja a la siguiente */
+  .item {
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .item-foto {
+    width: 70px;
+    height: 70px;
+    font-size: 36px;
+  }
+
+  .item-info {
+    flex: 1 1 150px;
+  }
+
+  /* El subtotal ocupa su propia línea, alineado a la derecha */
+  .item-subtotal {
+    width: 100%;
+  }
+}

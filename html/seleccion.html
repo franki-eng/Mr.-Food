@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hamburguesa Clásica</title>
+  <link rel="stylesheet" href="../css/producto.css">
+  <link rel="stylesheet" href="../css/footer.css">
+</head>
+<body>
+
+  <!-- ========== ENCABEZADO ========== -->
+  <header>
+    <div class="fila-superior">
+      <div>
+        <span class="menu">☰</span>
+        <a href="index.html"><img src="../imgs/logo.png" class="logo" alt="Volver al inicio"></a>
+      </div>
+      <div class="acciones">
+        <a href="carrito.html" class="icono-carrito" aria-label="Ver carrito">🛒</a>
+      </div>
+    </div>
+
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="productos.html">Productos</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="login.html">Login</a>
+    </nav>
+  </header>
+
+
+  <!-- ========== PRODUCTO ========== -->
+  <main id="producto_info">
+
+    <!-- Columna izquierda: imagen + botón -->
+    <div class="izquierda" id="producto">
+        <!-- Aca va el producto -->
+        <div class="foto">🍔</div>
+        <a href="pago.html" class="boton-pedido">Comenzar pedido</a>
+    </div>
+
+    <!-- Columna derecha: textos -->
+    <div class="derecha">
+      <h1>Hamburguesa Clásica</h1>
+      <p class="descripcion">
+        Hamburguesa de carne de res, lechuga, tomate, queso, pan, cebolla,
+        ketchup y mostaza. Imagen referencial.
+      </p>
+
+      <h2>Más información</h2>
+
+      <!-- <details> + <summary> = un desplegable que funciona SIN JavaScript -->
+      <details>
+        <summary>Información nutricional</summary>
+        <p>Aquí va la información nutricional de tu producto (calorías, grasas, proteínas...).</p>
+      </details>
+
+      <details>
+        <summary>Información sobre alérgenos</summary>
+        <p>Aquí van los alérgenos de tu producto (gluten, lácteos, huevo...).</p>
+      </details>
+    </div>
+
+  </main>
+
+
+  <footer>
+    <div class="footer-columnas">
+
+      <img src="../imgs/logo.png"  class="logo-footer" alt="Logo">
+
+      <div class="columna">
+        <h3>Sobre Nosotros</h3>
+        <ul>
+          <li><a href="#">Restaurantes</a></li>
+          <li><a href="#">Quiénes Somos</a></li>
+          <li><a href="#">Trabaja con nosotros</a></li>
+          <li><a href="#">Con las familias</a></li>
+          <li><a href="#">Contacto</a></li>
+          <li><a href="#">Legales de Promociones</a></li>
+          <li><a href="#">Protección de datos Personales</a></li>
+        </ul>
+      </div>
+
+      <div class="columna">
+        <h3>Contacto</h3>
+        <a href="#" class="reclamaciones">📖 Reclamaciones</a>
+      </div>
+
+    </div>
+
+    <p class="legal">
+      ©2026 Mr. Food. All rights reserved ·
+      <a href="#">Política de privacidad</a> ·
+      <a href="#">Términos y condiciones</a>
+    </p>
+  </footer>
+  <script type="module" src="../js/cargar_producto.js"></script>
+
+</body>
+</html>
