@@ -3,6 +3,21 @@ footer {
   padding: 90px 75px 0 75px;
 }
 
+footer a {
+  text-decoration: none;
+  color: #000;
+}
+
+footer ul {
+    list-style-type: none !important;
+}
+
+footer a:hover {
+  text-decoration: underline;
+  color: blue;
+}
+
+
 /* Cuatro bloques en fila: logo + 3 columnas */
 .footer-columnas {
   display: flex;
@@ -58,4 +73,24 @@ footer {
   border-top: 1px solid #3F4A5A;
   font-size: 14px;
   color: #555;
+}
+
+@media (max-width: 768px) {
+
+  footer {
+    padding: 40px 24px 0 24px; /* mucho menos que el 90px 75px pensado para desktop */
+  }
+
+  .footer-columnas {
+    flex-direction: column; /* logo y columnas uno debajo del otro, no en fila */
+    gap: 32px;
+  }
+
+  .columna {
+    width: 100%; /* cada columna usa todo el ancho disponible, ya no se aprieta a 22% */
+  }
+
+  .legal {
+    margin-top: 40px; /* el 120px original era para cuando todo estaba en una sola fila */
+  }
 }

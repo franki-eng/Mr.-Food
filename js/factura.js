@@ -19,6 +19,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     
     factura.innerHTML = "";
 
+    let totalFinal = (subtotal+4).toFixed(2)
+    let opGravada = ((totalFinal) / 1.18).toFixed(2);
+    let igv = ((totalFinal) - opGravada).toFixed(2);
+
     // 2. Inyectamos la estructura manteniendo tus propiedades exactas
     factura.innerHTML = `
         <div class="factura-titulo">
@@ -59,16 +63,16 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       <div class="totales">
         <div class="linea">
-          <span>Subtotal</span>
-          <span>S/ ${(subtotal+4).toFixed(2)}</span>
+          <span>Op. Gravada</span>
+          <span>S/ ${opGravada}</span>
         </div>
         <div class="linea">
           <span>IGV (18%)</span>
-          <span>S/ ${( (subtotal+4)* 0.18).toFixed(2)}</span>
+          <span>S/ ${igv}</span>
         </div>
         <div class="linea total">
           <span>Total pagado</span>
-          <span>S/ ${((subtotal + 4)*1.18).toFixed(2)}</span>
+          <span>S/ ${totalFinal}</span>
         </div>
       </div>
     `;

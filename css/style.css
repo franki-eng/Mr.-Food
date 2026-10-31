@@ -38,6 +38,7 @@ ul {
 
 .icono-carrito {
   font-size: 30px;
+  text-decoration: none;
 }
 
 
@@ -54,6 +55,30 @@ header {
   width: 100%;
   padding: 50px 80px;
   color: white;
+}
+
+header nav a{
+  color: #fff !important;
+  text-decoration: none;
+}
+
+header nav a:hover{
+  color: #c9c9c9 !important;
+  text-decoration: underline;
+}
+
+section a {
+  text-decoration: none;
+}
+
+footer a {
+  text-decoration: none;
+  color: #000;
+}
+
+footer a:hover {
+  text-decoration: underline;
+  color: blue;
 }
 
 /* flex + space-between: un elemento a la izquierda y otro a la derecha */
@@ -327,5 +352,59 @@ footer {
   footer {
     padding-left: 20px;
     padding-right: 20px;
+  }
+}
+
+
+html, body {
+  overflow-x: hidden;
+}
+
+header {
+  width: 100%;
+  box-sizing: border-box; /* el padding no se suma al ancho, se descuenta de él */
+}
+
+.fila-superior {
+  flex-wrap: wrap; /* si no cabe, pasa a la siguiente línea en vez de desbordar */
+}
+
+nav {
+  flex-wrap: wrap; /* mismo motivo: los enlaces bajan de línea si no entran */
+}
+
+/* A partir de aquí, reglas solo para pantallas de 768px de ancho o menos */
+@media (max-width: 768px) {
+
+  .logo {
+    height: 36px; /* logo más chico para que deje espacio a los enlaces */
+  }
+
+  nav {
+    gap: 12px;       /* menos separación entre Inicio / Productos / etc. */
+    font-size: 14px;
+  }
+
+  .icono-carrito {
+    font-size: 20px;
+  }
+
+  /* Los productos: que pasen de varias columnas a 2 o 1 por fila */
+  .productos {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    padding: 0 16px;
+  }
+}
+
+/* Para celulares muy angostos */
+@media (max-width: 480px) {
+  nav {
+    gap: 8px;
+    font-size: 13px;
+  }
+
+  .productos {
+    grid-template-columns: 1fr; /* una sola columna */
   }
 }

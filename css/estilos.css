@@ -12,12 +12,41 @@ body {
 }
 
 header {
-    background: #222;
-    color: white;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px 80px;
+  background: white;
+  /* Sombra suave hacia abajo: sensación de que el header "flota".
+     Valores: derecha, abajo, difuminado, color */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+nav a {
+  color: #000 !important;
+  text-decoration: none !important;
+}
+
+nav a:hover{
+  color: #c2bfbf !important;
+  text-decoration: underline !important;
+}
+
+.logo{
+    width: 90px;
+}
+
+.icono-carrito {
+  text-decoration: none !important;
+  color: inherit;
+  font-size: 24px;
 }
 
 header h1 {
@@ -214,4 +243,63 @@ border-radius: 10px;}
     #carruselSucursales .carousel-caption p {
         font-size: 12px;
     }
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+header {
+  width: 100%;
+  box-sizing: border-box; /* el padding no se suma al ancho, se descuenta de él */
+}
+
+.fila-superior {
+  flex-wrap: wrap; /* si no cabe, pasa a la siguiente línea en vez de desbordar */
+}
+
+nav {
+  flex-wrap: wrap; /* mismo motivo: los enlaces bajan de línea si no entran */
+}
+
+/* A partir de aquí, reglas solo para pantallas de 768px de ancho o menos */
+@media (max-width: 768px) {
+
+  header {
+    flex-direction: column; /* logo arriba, nav abajo, en vez de pelear por espacio horizontal */
+    gap: 16px;
+    padding: 24px 20px;     /* mucho menos que el 50px 80px original, pensado para desktop */
+  }
+
+  .logo {
+    width: 70px; /* tu logo usa width, no height, así que corrijo la propiedad correcta */
+  }
+
+  nav {
+    justify-content: center; /* centra los enlaces ya que ahora ocupan su propia fila */
+    gap: 12px;
+    font-size: 14px;
+  }
+
+  .icono-carrito {
+    font-size: 20px;
+  }
+
+  .productos {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    padding: 0 16px;
+  }
+}
+
+/* Para celulares muy angostos */
+@media (max-width: 480px) {
+  nav {
+    gap: 8px;
+    font-size: 13px;
+  }
+
+  .productos {
+    grid-template-columns: 1fr; /* una sola columna */
+  }
 }

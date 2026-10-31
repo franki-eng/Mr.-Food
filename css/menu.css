@@ -42,11 +42,33 @@ header {
   align-items: center;
   padding: 50px 80px;
   background: white;
-
   /* Sombra suave hacia abajo: sensación de que el header "flota".
      Valores: derecha, abajo, difuminado, color */
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+nav a {
+  color: #000 !important;
+  text-decoration: none !important;
+}
+
+nav a:hover{
+  color: #c2bfbf !important;
+  text-decoration: underline !important;
+}
+
+.icono-carrito {
+  text-decoration: none !important;
+  color: inherit;
+  font-size: 24px;
+}
+
 
 .menu {
   font-size: 36px;
@@ -236,4 +258,60 @@ footer {
   border-top: 1px solid #3F4A5A;
   font-size: 14px;
   color: #555;
+}
+
+/* ========== RESPONSIVE: evita que el header se desborde ========== */
+
+/* Red de seguridad: nada en la página debe generar scroll horizontal */
+html, body {
+  overflow-x: hidden;
+}
+
+header {
+  width: 100%;
+  box-sizing: border-box; /* el padding no se suma al ancho, se descuenta de él */
+}
+
+.fila-superior {
+  flex-wrap: wrap; /* si no cabe, pasa a la siguiente línea en vez de desbordar */
+}
+
+nav {
+  flex-wrap: wrap; /* mismo motivo: los enlaces bajan de línea si no entran */
+}
+
+/* A partir de aquí, reglas solo para pantallas de 768px de ancho o menos */
+@media (max-width: 768px) {
+
+  .logo {
+    height: 36px; /* logo más chico para que deje espacio a los enlaces */
+  }
+
+  nav {
+    gap: 12px;       /* menos separación entre Inicio / Productos / etc. */
+    font-size: 14px;
+  }
+
+  .icono-carrito {
+    font-size: 20px;
+  }
+
+  /* Los productos: que pasen de varias columnas a 2 o 1 por fila */
+  .productos {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    padding: 0 16px;
+  }
+}
+
+/* Para celulares muy angostos */
+@media (max-width: 480px) {
+  nav {
+    gap: 8px;
+    font-size: 13px;
+  }
+
+  .productos {
+    grid-template-columns: 1fr; /* una sola columna */
+  }
 }

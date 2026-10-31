@@ -1,5 +1,6 @@
 // CORRECCIÓN 1: Agregamos la extensión .js obligatoria para módulos
 import { findAll } from "./loadProducts.js"; 
+import { db } from "./createDB.js"
 
 document.addEventListener("DOMContentLoaded", async () => {
     const main = document.getElementById("main");
@@ -24,7 +25,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         // SOLUCIÓN: Si no hay productos, ocultamos el aside por completo y detenemos la ejecución
         if (productos.length <= 0) {
             resumen.style.display = "none"; 
-            lista.innerHTML += `<p class="carrito-vacio">No tienes productos en tu carrito de compras.</p>`;
+            lista.innerHTML += `<p class="carrito-vacio">No tienes puctos en tu carrito de compras.</p>`;
             return;
         }
 
@@ -66,7 +67,7 @@ function renderizar(elementos, html) {
             <div class="item-info">
                 <p class="item-nombre">${elemento.nombre}</p>
                 <p class="item-precio">S/ ${elemento.precio.toFixed(2)} c/u</p>
-                <a href="#" class="eliminar" data-id="${elemento.id}">Eliminar</a>
+                <a href="#" class="eliminar deleteProduct" data-id="${elemento.id}">Eliminar</a>
             </div>
             <input type="number" class="item-cantidad" value="${elemento.cantidad}" min="1" max="20" aria-label="Cantidad">
             <p class="item-subtotal">S/ ${(elemento.cantidad * elemento.precio).toFixed(2)}</p>
@@ -76,3 +77,52 @@ function renderizar(elementos, html) {
     }
     return total;
 }
+
+let lista = document.getElementById("lista");
+
+lista.addEventListener("click", async (e) => {
+    
+    if (e.target.classList.contains("deleteProduct")) {
+        e.preventDefault();
+
+        const enlaceEliminar = e.target;
+        // Obtenemos el ID (convertido a número para IndexedDB)
+        const id = Number(enlaceEliminar.dataset.id); 
+        // Buscamos la tarjeta contenedora del producto completo
+        const tarjetaProducto = enlaceEliminar.closest(".item");
+
+        try {
+            await new Promise((resolve, reject) => {
+                let transaction = db.transaction(["carrito"], "readwrite");
+                const objectStore = transaction.objectStore("carrito");
+
+                const solicitudLimpieza = objectStore.delete(id);
+
+                solicitudLimpieza.onsuccess = function () {
+                    console.log(`¡Producto con ID ${id} eliminado de IndexedDB!`);
+                    
+                    // EFECTO VISUAL: Si se borró de la BD, lo quitamos de la pantalla
+                    if (tarjetaProducto) {
+                        tarjetaProducto.remove();
+                    }
+                    
+                    location.reload();
+
+                    resolve();
+                };
+
+                solicitudLimpieza.onerror = function (error) {
+                    console.error("Error al intentar eliminar el producto:", error);
+                    reject(error);
+                };
+            });
+            
+            // TIP: Si tienes una función que calcula y muestra el TOTAL general 
+            // en tu pantalla, deberías volver a llamarla aquí para que se reste el precio.
+
+        } catch (error) {
+            console.error("Error en el proceso de eliminación:", error);
+        }
+    }
+});
+
