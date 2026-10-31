@@ -1,4 +1,5 @@
-// Inicio de sesión y registro de usuarios usando la base de datos MiTienda.
+import { crearCliente } from "./app";
+
 document.addEventListener("DOMContentLoaded", () => {
   const formulario = document.getElementById("loginForm");
 
@@ -6,51 +7,56 @@ document.addEventListener("DOMContentLoaded", () => {
     event.preventDefault();
 
     const nombre = document.getElementById("nombre").value.trim();
-    const correo = document.getElementById("correo").value.trim().toLowerCase();
+    const correo = document.getElementById("correo").value.trim();
     const password = document.getElementById("password").value;
     const celular = document.getElementById("celular").value.trim();
 
-    // Validaciones
-    if (!nombre) {
+    // Validaciones de entrada
+    if (nombre === "") {
       alert("El nombre no puede estar vacío.");
       return;
     }
 
-    if (!/^[A-Za-zÁÉÍÓÚáéíóúÑñÜü\s]+$/.test(nombre)) {
+    const nombreValido = /^[A-Za-zÁÉÍÓÚáéíóúÑñÜü\s]+$/;
+    if (!nombreValido.test(nombre)) {
       alert("El nombre solo puede contener letras.");
       return;
     }
 
-    if (!/^\d{9}$/.test(celular)) {
+    const celularValido = /^\d{9}$/;
+    if (!celularValido.test(celular)) {
       alert("El celular debe tener exactamente 9 dígitos.");
       return;
     }
 
-    if (!/^[^\s@]+@[^\s@]+\.com$/i.test(correo)) {
+    const correoValido = /^[^\s@]+@[^\s@]+\.com$/i;
+    if (!correoValido.test(correo)) {
       alert("El correo debe tener @ y terminar en .com.");
       return;
     }
 
     if (password.length < 8) {
-      alert("La contraseña debe tener al menos 8 caracteres.");
+      // Corregido a menor que 8 para coherencia de alerta
+      alert("La contraseña debe tener un mínimo de 8 caracteres.");
       return;
     }
 
     try {
       const passwordHash = await encriptarPassword(password);
       const db = await abrirBaseDatos();
-      const transaccion = db.transaction("usuarios", "readwrite");
-      const almacenUsuarios = transaccion.objectStore("usuarios");
 
-      // En createDB.js, "correo" es la clave principal de usuarios.
-      const busqueda = almacenUsuarios.get(correo);
+      
+
+      // Consultamos si el email ya existe utilizando el índice de correo
+      const busqueda = usuario.correo;
 
       busqueda.onsuccess = () => {
         const usuarioExistente = busqueda.result;
 
         if (usuarioExistente) {
+          // Si existe, validamos contraseñas
           if (usuarioExistente.password !== passwordHash) {
-            alert("La contraseña es incorrecta.");
+            alert("Correo o contraseña incorrectos.");
             return;
           }
 
@@ -60,68 +66,86 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
         }
 
+        // Si el correo no existe en la base de datos, lo registramos como nuevo usuario
         const nuevoUsuario = {
-          nombre,
-          correo,
-          celular,
+          nombre: nombre,
+          correo: correo,
+          celular: celular,
           password: passwordHash,
         };
 
-        const agregar = almacenUsuarios.add(nuevoUsuario);
+        const agregar = usuarios.add(nuevoUsuario);
 
         agregar.onsuccess = () => {
           sessionStorage.setItem(
             "usuario",
-            JSON.stringify(nuevoUsuario)
+            JSON.stringify({
+              id: agregar.result,
+              ...nuevoUsuario,
+            })
           );
-          alert("Usuario registrado correctamente. ¡Bienvenido!");
-          window.location.href = "index.html";
+
+          alert("Usuario registrado e ingresado correctamente.");
+          setTimeout(() => {
+            window.location.href = "index.html";
+          }, 500);
         };
 
         agregar.onerror = () => {
-          console.error("No se pudo registrar el usuario:", agregar.error);
-          alert("No se pudo registrar el usuario. Comprueba si el correo o celular ya están registrados.");
+          alert("No se pudo registrar el usuario.");
         };
       };
-
-      busqueda.onerror = () => {
-        console.error("Error al buscar el usuario:", busqueda.error);
-        alert("No se pudo consultar el usuario.");
-      };
-
-      transaccion.onerror = () => {
-        console.error("Error en la transacción:", transaccion.error);
-      };
     } catch (error) {
-      console.error("Error en el proceso de registro o inicio de sesión:", error);
-      alert("Ocurrió un error al procesar los datos. Revisa la consola para más detalles.");
+      console.error("Error crítico en el proceso de login:", error);
+      alert("Ocurrió un error al procesar los datos.");
     }
   });
 });
 
+// CORRECCIÓN: Sincronizada la apertura con la versión 3 de la base de datos general
 function abrirBaseDatos() {
   return new Promise((resolve, reject) => {
-    // Se mantiene la misma base de datos y versión que createDB.js.
     const solicitud = indexedDB.open("MiTienda", 4);
 
-    solicitud.onsuccess = () => {
-      const db = solicitud.result;
+    solicitud.onupgradeneeded = (event) => {
+      const db = event.target.result;
 
+      // La página de login no carga createDB.js, por eso
+      // creamos aquí el almacén que necesita el login.
       if (!db.objectStoreNames.contains("usuarios")) {
-        db.close();
-        reject(new Error("No existe el almacén 'usuarios'. Abre primero la página principal para inicializar la base de datos."));
-        return;
-      }
+        const usuarios = db.createObjectStore("usuarios", {
+          keyPath: "id",
+          autoIncrement: true,
+        });
 
+        usuarios.createIndex("correo", "correo", { unique: true });
+        usuarios.createIndex("nombre", "nombre", { unique: false });
+        usuarios.createIndex("celular", "celular", { unique: false });
+        usuarios.createIndex("password", "password", { unique: false });
+      }
+    };
+
+    solicitud.onsuccess = (event) => {
+      const db = event.target.result;
       db.onversionchange = () => db.close();
       resolve(db);
     };
 
-    solicitud.onerror = () => reject(solicitud.error);
-    solicitud.onblocked = () => reject(new Error("La base de datos está bloqueada. Cierra otras pestañas de Mr. Food e inténtalo nuevamente."));
+    solicitud.onerror = () => {
+      reject(solicitud.error);
+    };
+
+    solicitud.onblocked = () => {
+      reject(
+        new Error(
+          "La base de datos está bloqueada. Cierra otras pestañas de la tienda y vuelve a intentarlo."
+        )
+      );
+    };
   });
 }
 
+// Encriptación nativa SHA-256
 async function encriptarPassword(password) {
   const datos = new TextEncoder().encode(password);
   const hash = await crypto.subtle.digest("SHA-256", datos);
