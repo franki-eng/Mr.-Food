@@ -1,0 +1,281 @@
+/* ==========================================================
+   0. ESTILOS GENERALES (los mismos de siempre)
+   ========================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  color: #292929;
+  background: white;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Ícono del carrito + botón Entrar, uno al lado del otro */
+.acciones {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.icono-carrito {
+  font-size: 30px;
+}
+
+.metodo-detalle {
+  margin-top: 10px;
+}
+
+
+/* ==========================================================
+   1. ENCABEZADO (igual que en la página de producto)
+   ========================================================== */
+header {
+  padding: 50px 80px 35px 80px;
+  background: white;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.fila-superior {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu {
+  font-size: 36px;
+  margin-right: 20px;
+}
+
+.logo {
+  height: 80px;
+  vertical-align: middle;
+}
+
+.boton-entrar {
+  background: #FFBC0D;
+  border: 1px solid #E3A600;
+  border-radius: 3px;
+  padding: 14px 70px;
+}
+
+nav {
+  margin-top: 45px;
+  margin-left: 60px;
+}
+
+nav a {
+  font-size: 20px;
+  margin-right: 50px;
+}
+
+
+/* ==========================================================
+   2. DISTRIBUCIÓN: formulario a la izquierda, resumen a la derecha
+   ========================================================== */
+main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;   /* cada columna mide lo que necesita, no se estiran */
+  gap: 60px;
+  padding: 70px 40px 100px 40px;
+}
+
+.formulario {
+  width: 650px;
+}
+
+.resumen {
+  width: 400px;
+  padding: 30px;
+  background: #F8F8F8;
+  border-radius: 8px;
+}
+
+
+/* ==========================================================
+   3. TÍTULOS
+   ========================================================== */
+h1 {
+  font-size: 40px;
+  margin-bottom: 40px;
+}
+
+h2 {
+  font-size: 24px;
+  margin: 40px 0 20px 0;
+}
+
+h3 {
+  font-size: 18px;
+  margin: 30px 0 15px 0;
+}
+
+/* El primer h2 del resumen no necesita margen arriba */
+.resumen h2 {
+  margin-top: 0;
+}
+
+
+/* ==========================================================
+   4. CAMPOS DEL FORMULARIO
+   ========================================================== */
+
+/* Cada campo = etiqueta arriba + caja de texto abajo */
+.campo {
+  margin-bottom: 20px;
+}
+
+.campo label {
+  display: block;        /* la etiqueta ocupa su propia línea */
+  margin-bottom: 6px;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+/* width: 100% hace que la caja llene todo el ancho de su campo */
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+/* :focus = cuando haces clic dentro de la caja */
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus {
+  outline: 2px solid #FFBC0D;
+  border-color: #FFBC0D;
+}
+
+/* Dos campos en la misma línea: cada uno ocupa la mitad (flex: 1) */
+.fila {
+  display: flex;
+  gap: 20px;
+}
+
+.fila .campo {
+  flex: 1;
+}
+
+
+/* ==========================================================
+   5. MÉTODOS DE PAGO
+   ========================================================== */
+.metodo {
+  display: block;
+  padding: 16px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.metodo:hover {
+  border-color: #FFBC0D;
+}
+
+.metodo input {
+  margin-right: 10px;
+}
+
+.aviso {
+  margin: 10px 0 30px 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #777;
+}
+
+.boton-confirmar {
+  width: 100%;
+  padding: 18px;
+  background: #FFBC0D;
+  border: 1px solid #E3A600;
+  border-radius: 4px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.boton-confirmar:hover {
+  background: #ffc933;
+}
+
+
+/* ==========================================================
+   6. RESUMEN DEL PEDIDO
+   ========================================================== */
+
+/* Cada línea: nombre a la izquierda, precio a la derecha */
+.linea {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.total {
+  border-bottom: none;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+
+/* ==========================================================
+   7. CELULAR (opcional)
+   ========================================================== */
+@media (max-width: 800px) {
+
+  header {
+    padding: 20px;
+  }
+
+  .boton-entrar {
+    padding: 12px 30px;
+  }
+
+  nav {
+    margin-top: 25px;
+    margin-left: 0;
+  }
+
+  nav a {
+    font-size: 16px;
+    margin-right: 20px;
+  }
+
+  /* Formulario arriba y resumen abajo */
+  main {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 40px;
+    padding: 40px 20px;
+  }
+
+  .formulario,
+  .resumen {
+    width: 100%;
+  }
+
+  /* Los campos dobles pasan uno debajo del otro */
+  .fila {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+}

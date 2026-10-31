@@ -1,0 +1,251 @@
+/* ==========================================================
+   0. ESTILOS GENERALES (los mismos de siempre)
+   ========================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  color: #292929;
+  background: white;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+/* Ícono del carrito + botón Entrar, uno al lado del otro */
+.acciones {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.icono-carrito {
+  font-size: 30px;
+}
+
+
+
+
+
+/* ==========================================================
+   1. ENCABEZADO (blanco, con dos filas: logo/botón y menú)
+   ========================================================== */
+header {
+  padding: 50px 80px 35px 80px;
+  background: white;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.fila-superior {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu {
+  font-size: 36px;
+  margin-right: 20px;
+}
+
+.logo {
+  height: 80px;
+  vertical-align: middle;
+}
+
+.boton-entrar {
+  background: #FFBC0D;
+  border: 1px solid #E3A600;
+  border-radius: 3px;
+  padding: 14px 70px;
+}
+
+nav {
+  margin-top: 45px;
+  margin-left: 60px;
+}
+
+nav a {
+  font-size: 20px;
+  margin-right: 50px;
+}
+
+
+/* ==========================================================
+   2. PRODUCTO: dos columnas
+   ========================================================== */
+
+/* flex pone las dos columnas lado a lado.
+   Cada columna tiene un ancho fijo y gap las separa. */
+main {
+  display: flex;
+  justify-content: center;
+  gap: 120px;
+  padding: 80px 40px 120px 40px;
+}
+
+/* --- columna izquierda --- */
+.izquierda {
+  width: 450px;
+}
+
+/* Recuadro que centra el emoji (o la foto) */
+.foto {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  margin-bottom: 60px;
+  font-size: 200px;   /* tamaño del emoji */
+}
+
+.foto img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+
+.precio-producto {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+
+/* display: block hace que el enlace ocupe todo el ancho de la columna */
+.boton-pedido {
+  display: block;
+  background: #FFBC0D;
+  border: 1px solid #E3A600;
+  border-radius: 3px;
+  padding: 14px;
+  text-align: center;
+}
+
+/* --- columna derecha --- */
+.derecha {
+  width: 750px;
+}
+
+h1 {
+  font-size: 62px;
+  margin-bottom: 10px;   /* antes era 30px */
+}
+
+.descripcion {
+  color: #666;
+  font-size: 18px;
+  line-height: 1.7;
+  margin-bottom: 50px;
+}
+
+h2 {
+  font-size: 34px;
+  margin-bottom: 25px;
+}
+
+
+/* ==========================================================
+   3. DESPLEGABLES (details / summary)
+   ========================================================== */
+
+/* details ya se abre y se cierra solo. Nosotros solo le damos estilo. */
+details {
+  margin-bottom: 10px;
+}
+
+/* summary es la fila que se ve siempre (el título del desplegable).
+   flex + space-between: texto a la izquierda, flecha a la derecha. */
+summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  font-size: 22px;
+  cursor: pointer;          /* la manito al pasar el mouse */
+  list-style: none;         /* quita el triangulito que trae por defecto */
+}
+
+/* Esta línea quita el triangulito en Chrome y Edge */
+summary::-webkit-details-marker {
+  display: none;
+}
+
+/* La flecha: un cuadrado vacío al que solo le dibujamos
+   dos bordes (derecho e inferior) y lo giramos 45 grados. */
+summary::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid #292929;
+  border-bottom: 2px solid #292929;
+  transform: rotate(45deg);
+}
+
+/* Cuando el desplegable está abierto, la flecha mira hacia arriba */
+details[open] summary::after {
+  transform: rotate(-135deg);
+}
+
+/* Texto que aparece al abrir */
+details p {
+  color: #666;
+  line-height: 1.6;
+  padding-bottom: 16px;
+}
+
+
+/* ==========================================================
+   4. CELULAR (opcional)
+   ========================================================== */
+@media (max-width: 800px) {
+
+  header {
+    padding: 20px;
+  }
+
+  .boton-entrar {
+    padding: 12px 30px;
+  }
+
+  nav {
+    margin-top: 25px;
+    margin-left: 0;
+  }
+
+  nav a {
+    font-size: 16px;
+    margin-right: 20px;
+  }
+
+  /* De dos columnas a una debajo de la otra */
+  main {
+    flex-direction: column;
+    gap: 40px;
+    padding: 40px 20px;
+  }
+
+  .izquierda,
+  .derecha {
+    width: 100%;
+  }
+
+  .foto {
+    height: 220px;
+    font-size: 130px;
+    margin-bottom: 30px;
+  }
+
+  h1 {
+    font-size: 36px;
+  }
+
+  h2 {
+    font-size: 26px;
+  }
+}
