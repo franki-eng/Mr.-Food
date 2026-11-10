@@ -1,0 +1,96 @@
+footer {
+  background: #F8F8F8;
+  padding: 90px 75px 0 75px;
+}
+
+footer a {
+  text-decoration: none;
+  color: #000;
+}
+
+footer ul {
+    list-style-type: none !important;
+}
+
+footer a:hover {
+  text-decoration: underline;
+  color: blue;
+}
+
+
+                                               
+.footer-columnas {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo-footer {
+  height: 88px;
+  width: 100px;
+}
+
+.columna {
+  width: 22%;
+}
+
+.columna h3 {
+  font-size: 22px;
+  margin-bottom: 30px;
+}
+
+.columna li {
+  margin-bottom: 16px;
+}
+
+.columna p {
+  margin-top: 30px;
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.reclamaciones {
+  display: inline-block;
+  background: white;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.boton-negro {
+  display: inline-block;
+  background: black;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 5px;
+  font-size: 14px;
+  margin-right: 6px;
+}
+
+                                                      
+.legal {
+  margin-top: 120px;
+  padding: 24px 0 40px 0;
+  border-top: 1px solid #3F4A5A;
+  font-size: 14px;
+  color: #555;
+}
+
+@media (max-width: 768px) {
+
+  footer {
+    padding: 40px 24px 0 24px;                                                        
+  }
+
+  .footer-columnas {
+    flex-direction: column;                                                      
+    gap: 32px;
+  }
+
+  .columna {
+    width: 100%;                                                                        
+  }
+
+  .legal {
+    margin-top: 40px;                                                                     
+  }
+}

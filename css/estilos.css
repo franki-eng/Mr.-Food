@@ -1,0 +1,304 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #f4f4f4;
+  color: #222;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px 80px;
+  background: white;
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.columna {
+  text-align: left;
+}
+
+.title-footer {
+  color: #000;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+nav a {
+  color: #000 !important;
+  text-decoration: none !important;
+}
+
+nav a:hover {
+  color: #c2bfbf !important;
+  text-decoration: underline !important;
+}
+
+.logo {
+  width: 90px;
+}
+
+.icono-carrito {
+  text-decoration: none !important;
+  color: inherit;
+  font-size: 24px;
+}
+
+header h1 {
+  color: #ffcc00;
+}
+
+.img {
+  max-height: 400px;
+  object-fit: cover;
+  width: 100%;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 10px;
+}
+
+nav a:hover {
+  color: #ffcc00;
+}
+
+.hero {
+  text-align: center;
+  padding: 100px 20px;
+  background: #ffcc00;
+}
+
+.h2 {
+  font-size: 4rem;
+  font-family: sans-serif;
+  color: #1bcde8;
+  background-color: black;
+  padding: 20px;
+  text-align: center;
+}
+
+button {
+  background: #222;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  margin-top: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #444;
+}
+
+.promociones {
+  background: rgb(235, 234, 234);
+  width: 230px;
+  padding: 25px;
+  text-align: center;
+  border-radius: 30px;
+  box-shadow: 0 3px 10px #bbb;
+  gap: 12px;
+}
+.div-promos {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.h3 {
+  margin-bottom: 15px;
+}
+
+.contenido {
+  padding: 40px;
+  text-align: left;
+}
+.carrito {
+  background: white;
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 30px;
+  text-align: center;
+  border-radius: 10px;
+}
+.sucursal {
+  background: white;
+  margin: 20px auto;
+  padding: 10px;
+  max-width: 600px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.login-body {
+  background: #222;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-box {
+  background: white;
+  padding: 40px;
+  width: 350px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.login-box h1 {
+  color: #e63946;
+  margin-bottom: 20px;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+}
+
+.login-box button {
+  width: 100%;
+}
+
+footer {
+  text-align: center;
+  background: #222;
+  color: white;
+  padding: 20px;
+}
+.img {
+  width: 200px;
+  height: auto;
+  border-radius: 10px;
+}
+
+.img2 {
+  width: 200px;
+  height: auto;
+  border-radius: 10px;
+}
+
+#carruselSucursales {
+  max-width: 900px;
+}
+
+.imagen-sucursal {
+  height: 450px;
+  object-fit: cover;
+}
+
+#carruselSucursales .carousel-caption {
+  background: rgba(0, 0, 0, 0.72);
+  border-radius: 10px;
+  padding: 15px;
+  bottom: 25px;
+}
+
+#carruselSucursales .carousel-caption h3 {
+  color: #ffbc0d;
+  font-weight: bold;
+}
+
+#carruselSucursales .carousel-caption p {
+  margin-bottom: 5px;
+  color: white;
+}
+
+#carruselSucursales .carousel-indicators {
+  margin-bottom: 5px;
+}
+
+@media (max-width: 576px) {
+  .imagen-sucursal {
+    height: 380px;
+  }
+
+  #carruselSucursales .carousel-caption {
+    left: 10%;
+    right: 10%;
+    bottom: 25px;
+    padding: 8px;
+  }
+
+  #carruselSucursales .carousel-caption h3 {
+    font-size: 20px;
+  }
+
+  #carruselSucursales .carousel-caption p {
+    font-size: 12px;
+  }
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+header {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.fila-superior {
+  flex-wrap: wrap;
+}
+
+nav {
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px 20px;
+  }
+
+  .logo {
+    width: 70px;
+  }
+
+  nav {
+    justify-content: center;
+    gap: 12px;
+    font-size: 14px;
+  }
+
+  .icono-carrito {
+    font-size: 20px;
+  }
+
+  .productos {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    padding: 0 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  nav {
+    gap: 8px;
+    font-size: 13px;
+  }
+
+  .productos {
+    grid-template-columns: 1fr;
+  }
+}

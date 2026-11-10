@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pago</title>
+    <link rel="stylesheet" href="../css/pago.css" />
+    <link rel="stylesheet" href="../css/footer.css" />
+  </head>
+  <body>
+    <header>
+      <div class="fila-superior">
+        <div>
+          <span class="menu">☰</span>
+          <a href="index.html"
+            ><img src="../imgs/logo.png" class="logo" alt="Volver al inicio"
+          /></a>
+        </div>
+        <div class="acciones">
+          <a href="carrito.html" class="icono-carrito" aria-label="Ver carrito"
+            >🛒</a
+          >
+        </div>
+      </div>
+
+      <nav>
+        <a href="index.html">Inicio</a>
+        <a href="productos.html">Productos</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="login.html">Login</a>
+      </nav>
+    </header>
+
+    <main>
+      <form class="formulario" action="#" method="post" id="formulario">
+        <h1>Finalizar pedido</h1>
+
+        <h2>1. Tus datos</h2>
+
+        <div class="campo">
+          <label for="nombre">Nombre completo</label>
+          <input type="text" id="nombre" name="nombre" required />
+        </div>
+
+        <div class="fila">
+          <div class="campo">
+            <label for="dni">DNI</label>
+            <input
+              type="text"
+              id="dni"
+              name="dni"
+              maxlength="8"
+              pattern="[0-9]{8}"
+              inputmode="numeric"
+              placeholder="8 dígitos"
+              required
+            />
+          </div>
+          <div class="campo">
+            <label for="celular">Celular</label>
+            <input
+              type="tel"
+              id="celular"
+              name="celular"
+              placeholder="999 999 999"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="campo">
+          <label for="correo">Correo electrónico</label>
+          <input
+            type="email"
+            id="correo"
+            name="correo"
+            placeholder="nombre@correo.com"
+            required
+          />
+        </div>
+
+        <h2>2. Dónde lo entregamos</h2>
+
+        <div class="campo">
+          <label for="direccion">Dirección</label>
+          <input
+            type="text"
+            id="direccion"
+            name="direccion"
+            placeholder="Calle, número, piso o departamento"
+            required
+          />
+        </div>
+
+        <div class="fila">
+          <div class="campo">
+            <label for="distrito">Distrito</label>
+            <input type="text" id="distrito" name="distrito" required />
+          </div>
+          <div class="campo">
+            <label for="referencia">Referencia (opcional)</label>
+            <input
+              type="text"
+              id="referencia"
+              name="referencia"
+              placeholder="Frente al parque..."
+            />
+          </div>
+        </div>
+
+        <h2>3. Método de pago</h2>
+
+        <label class="metodo">
+          <input
+            type="radio"
+            name="pago"
+            id="radio-tarjeta"
+            value="tarjeta"
+            checked
+          />
+          💳 Tarjeta de crédito o débito
+        </label>
+        <label class="metodo">
+          <input type="radio" name="pago" id="radio-yape" value="yape" /> 📱
+          Yape
+        </label>
+        <label class="metodo">
+          <input type="radio" name="pago" id="radio-plin" value="plin" /> 📱
+          Plin
+        </label>
+        <label class="metodo">
+          <input
+            type="radio"
+            name="pago"
+            id="radio-efectivo"
+            value="efectivo"
+          />
+          💵 Efectivo contra entrega
+        </label>
+
+        <div id="pago-tarjeta" class="metodo-detalle">
+          <h3>Datos de la tarjeta</h3>
+
+          <div class="campo">
+            <label for="tarjeta">Número de tarjeta</label>
+            <input
+              type="text"
+              id="tarjeta"
+              inputmode="numeric"
+              maxlength="19"
+              placeholder="0000 0000 0000 0000"
+            />
+          </div>
+
+          <div class="fila">
+            <div class="campo">
+              <label for="vence">Vencimiento</label>
+              <input type="text" id="vence" maxlength="5" placeholder="MM/AA" />
+            </div>
+            <div class="campo">
+              <label for="cvv">CVV</label>
+              <input
+                type="text"
+                id="cvv"
+                inputmode="numeric"
+                maxlength="4"
+                placeholder="123"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div id="pago-billetera" class="metodo-detalle" hidden>
+          <h3>Paga con Yape o Plin</h3>
+          <div class="campo">
+            <label for="celular-billetera">Número de celular</label>
+            <input
+              type="tel"
+              id="celular-billetera"
+              placeholder="999 999 999"
+            />
+          </div>
+          <div class="campo">
+            <label for="celular-codigo">Codigo de aprobacion</label>
+            <input
+              type="text"
+              id="celular-codigo"
+              placeholder="123456"
+              minlength="6"
+              maxlength="6"
+              pattern="[0-9]{6}"
+              required
+            />
+          </div>
+          <p class="aviso">
+            Al confirmar, te llegará la solicitud de pago a tu app.
+          </p>
+        </div>
+
+        <button type="submit" class="boton-confirmar">Confirmar pedido</button>
+      </form>
+
+      <aside class="resumen" id="resumen"></aside>
+    </main>
+
+    <footer>
+      <div class="footer-columnas">
+        <img src="../imgs/logo.png" class="logo-footer" alt="Logo" />
+
+        <div class="columna">
+          <h3>Sobre Nosotros</h3>
+          <ul>
+            <li><a href="#">Restaurantes</a></li>
+            <li><a href="#">Quiénes Somos</a></li>
+            <li><a href="#">Trabaja con nosotros</a></li>
+            <li><a href="#">Con las familias</a></li>
+            <li><a href="#">Contacto</a></li>
+            <li><a href="#">Legales de Promociones</a></li>
+            <li><a href="#">Protección de datos Personales</a></li>
+          </ul>
+        </div>
+
+        <div class="columna">
+          <h3>Contacto</h3>
+          <a href="#" class="reclamaciones">📖 Reclamaciones</a>
+        </div>
+      </div>
+
+      <p class="legal">
+        ©2026 Mr. Food. All rights reserved ·
+        <a href="#">Política de privacidad</a> ·
+        <a href="#">Términos y condiciones</a>
+      </p>
+    </footer>
+
+    <script type="module" src="../js/form.js"></script>
+  </body>
+</html>

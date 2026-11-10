@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tu carrito</title>
+    <link rel="stylesheet" href="../css/carrito.css" />
+    <link rel="stylesheet" href="../css/footer.css" />
+  </head>
+  <body>
+    
+    <header>
+      <div class="fila-superior">
+        <div>
+          <span class="menu">☰</span>
+          <a href="index.html"
+            ><img src="../imgs/logo.png" class="logo" alt="Volver al inicio"
+          /></a>
+        </div>
+        <div class="acciones">
+          <a href="carrito.html" class="icono-carrito" aria-label="Ver carrito"
+            >🛒</a
+          >
+        </div>
+      </div>
+
+      <nav>
+        <a href="index.html">Inicio</a>
+        <a href="productos.html">Productos</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="login.html">Login</a>
+      </nav>
+    </header>
+
+    
+    
+    <main id="main">
+      
+      <section class="lista" id="lista">
+        
+      </section>
+
+      
+      <aside class="resumen" id="resumen">
+        
+      </aside>
+    </main>
+
+    
+
+    <footer>
+      <div class="footer-columnas">
+        <img src="../imgs/logo.png" class="logo-footer" alt="Logo" />
+
+        <div class="columna">
+          <h3>Sobre Nosotros</h3>
+          <ul>
+            <li><a href="#">Restaurantes</a></li>
+            <li><a href="#">Quiénes Somos</a></li>
+            <li><a href="#">Trabaja con nosotros</a></li>
+            <li><a href="#">Con las familias</a></li>
+            <li><a href="#">Contacto</a></li>
+            <li><a href="#">Legales de Promociones</a></li>
+            <li><a href="#">Protección de datos Personales</a></li>
+          </ul>
+        </div>
+
+        <div class="columna">
+          <h3>Contacto</h3>
+          <a href="#" class="reclamaciones">📖 Reclamaciones</a>
+        </div>
+      </div>
+
+      <p class="legal">
+        ©2026 Mr. Food All rights reserved ·
+        <a href="#">Política de privacidad</a> ·
+        <a href="#">Términos y condiciones</a>
+      </p>
+    </footer>
+    <script type="module" src="../js/carrito.js"></script>
+    <script>
+      $(function () {
+        $("#progressbar").progressbar({
+          value: 37,
+        });
+      });
+    </script>
+    <div id="progressbar"></div>
+    <p>Progressbar de Jquery para ver cuando la pagina va a cambiar</p>
+  </body>
+</html>
